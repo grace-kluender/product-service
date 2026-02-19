@@ -60,10 +60,22 @@ If not provided, default values are used.
 
 ---
 
-## Run Locally
+## Build
 
 From the `product-service` directory:
 
 ```bash
 npm install
-npm start
+```
+
+## Run/Deploy (Local)
+
+```bash
+DB_HOST=localhost DB_NAME=ecommerce DB_USER=postgres DB_PASSWORD=password PORT=3001 npm start
+```
+
+## Verify Health & Fetch Products
+```bash
+curl -i http://localhost:3001/health
+curl -s http://localhost:3001/products
+```
