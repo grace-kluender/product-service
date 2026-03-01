@@ -44,9 +44,19 @@ This repository follows a standardized structure used across all microservices r
 
 ---
 
-## Environment Variables
+## Configuration
 
-The service supports the following environment variables:
+The service uses environment variables for configuration.
+
+## Configuration
+
+This service uses environment variables for configuration.
+
+1. Copy the example environment file:
+
+   cp .env.example .env
+
+2. Update values if needed.
 
 | Variable        | Default      | Description |
 |-----------------|-------------|-------------|
@@ -56,23 +66,13 @@ The service supports the following environment variables:
 | DB_USER         | postgres    | Database user |
 | DB_PASSWORD     | password    | Database password |
 
-If not provided, default values are used.
+The service will automatically load variables from `.env`.
 
 ---
 
-## Build
-
-From the `product-service` directory:
-
-```bash
-npm install
-```
-
 ## Run/Deploy (Local)
-
-```bash
-DB_HOST=localhost DB_NAME=ecommerce DB_USER=postgres DB_PASSWORD=password PORT=3001 npm start
-```
+npm install
+npm start
 
 ## Verify Health & Fetch Products
 ```bash
