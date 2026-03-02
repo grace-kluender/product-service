@@ -7,7 +7,7 @@ This project implements the Git Flow branching model to support development with
 The model includes two long-lived branches:
 
     - `main` — represents stable, production-ready code.
-    
+
     - `develop` — represents the integration branch for completed features.
 
 The other branches involved in the worfklow are temporary: `feature/*`, `release/*`, and `hotfix/*`.
@@ -107,6 +107,7 @@ Production
 
 Below is a graph that visualizes the interactions between branch types:
 
+```
 feature/* → develop → release/* → main
 ↘
 develop
@@ -114,6 +115,7 @@ develop
 hotfix/* → main
 ↘
 develop
+```
 
 Key Interaction Rules:
 - Features must always merge into `develop` first
@@ -144,6 +146,6 @@ Because the `main` branch represents production-ready code, it is important that
 
 I also configured rules for the `develop` branch. I disabled direct pushes, and require pull requests for all merges. I also disabled force pushes and branch deletion. Unlike `main`, I do not require approval before merging. 
 
-### Decision to use manual Git Flow instead of `git flow init`
+### Decision to use manual Git Flow instead of git flow init
 
 Through my research, I learned that there was a Git Flow CLI extension that could be used to quickly implement this workflow. However, I chose to implement this branching strategy manually becasue I wanted to ensure that I had a full understanding of the underlying Git operations at work. Additionally, I didn't want to obscure transparency when it came to branch creation and merging. 
