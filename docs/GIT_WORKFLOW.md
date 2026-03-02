@@ -5,7 +5,9 @@
 This project implements the Git Flow branching model to support development with a clear separation between ongoing development, preparations for releases, production-ready code, and emergency production fixes.
 
 The model includes two long-lived branches:
+
     - `main` — represents stable, production-ready code.
+    
     - `develop` — represents the integration branch for completed features.
 
 The other branches involved in the worfklow are temporary: `feature/*`, `release/*`, and `hotfix/*`.
