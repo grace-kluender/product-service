@@ -16,7 +16,7 @@ The Product Service is responsible for:
 - PostgreSQL (pg)
 - CORS
 - Jest (configured for testing)
- 
+
 ---
 
 ## Repository Structure
