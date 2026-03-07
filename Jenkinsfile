@@ -38,9 +38,9 @@ pipeline {
         stage('Container Push') {
             when {
                 anyOf {
-                    branch 'develop'
-                    branch 'main'
-                    branch pattern: "release/.*", comparator: "REGEXP"
+                    expression { env.GIT_BRANCH == 'origin/develop' }
+                    expression { env.GIT_BRANCH == 'origin/main' }
+                    expression { env.GIT_BRANCH.startsWith('origin/release') }
                 }
             }
             steps {
@@ -59,7 +59,7 @@ pipeline {
 
         stage('Deploy Dev') {
             when {
-                branch 'develop'
+                expression { env.GIT_BRANCH == 'origin/develop' }
             }
             steps {
                 echo "Deploying to Dev environment"
@@ -69,7 +69,7 @@ pipeline {
 
         stage('Deploy Staging') {
             when {
-                branch pattern: "release/.*", comparator: "REGEXP"
+                expression { env.GIT_BRANCH.startsWith('origin/release') }
             }
             steps {
                 echo "Deploying to Staging environment"
@@ -79,7 +79,7 @@ pipeline {
 
         stage('Deploy Production') {
             when {
-                branch 'main'
+                expression { env.GIT_BRANCH == 'origin/main' }
             }
             steps {
                 input message: "Approve production deployment?"
