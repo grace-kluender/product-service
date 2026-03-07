@@ -17,6 +17,8 @@ The Product Service is responsible for:
 - CORS
 - Jest (configured for testing)
 
+
+
 ---
 
 ## Repository Structure
