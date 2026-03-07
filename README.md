@@ -7,7 +7,6 @@ The Product Service is responsible for:
 - Creating new products
 - Persisting product data in PostgreSQL
 
-
 ---
 
 ## Tech Stack
@@ -17,7 +16,7 @@ The Product Service is responsible for:
 - PostgreSQL (pg)
 - CORS
 - Jest (configured for testing)
- 
+
 ---
 
 ## Repository Structure
