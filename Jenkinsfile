@@ -36,6 +36,13 @@ pipeline {
         }
 
         stage('Container Push') {
+            when {
+                anyOf {
+                    expression { env.GIT_BRANCH == 'origin/develop' }
+                    expression { env.GIT_BRANCH == 'origin/main' }
+                    expression { env.GIT_BRANCH.startsWith('origin/release') }
+                }
+            }
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub-creds',
@@ -49,5 +56,37 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy Dev') {
+            when {
+                expression { env.GIT_BRANCH == 'origin/develop' }
+            }
+            steps {
+                echo "Deploying to Dev environment"
+                sh 'echo Dev deployment triggered'
+            }
+        }
+
+        stage('Deploy Staging') {
+            when {
+                expression { env.GIT_BRANCH.startsWith('origin/release') }
+            }
+            steps {
+                echo "Deploying to Staging environment"
+                sh 'echo Staging deployment triggered'
+            }
+        }
+
+        stage('Deploy Production') {
+            when {
+                expression { env.GIT_BRANCH == 'origin/main' }
+            }
+            steps {
+                input message: "Approve production deployment?"
+                echo "Deploying to Production environment"
+                sh 'echo Production deployment triggered'
+            }
+        }
+
     }
 }
