@@ -36,6 +36,13 @@ pipeline {
         }
 
         stage('Container Push') {
+            when {
+                anyOf {
+                    branch 'develop'
+                    branch 'main'
+                    branch pattern: "release/.*", comparator: "REGEXP"
+                }
+            }
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub-creds',
@@ -49,5 +56,37 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy Dev') {
+            when {
+                branch 'develop'
+            }
+            steps {
+                echo "Deploying to Dev environment"
+                sh 'echo Dev deployment triggered'
+            }
+        }
+
+        stage('Deploy Staging') {
+            when {
+                branch pattern: "release/.*", comparator: "REGEXP"
+            }
+            steps {
+                echo "Deploying to Staging environment"
+                sh 'echo Staging deployment triggered'
+            }
+        }
+
+        stage('Deploy Production') {
+            when {
+                branch 'main'
+            }
+            steps {
+                input message: "Approve production deployment?"
+                echo "Deploying to Production environment"
+                sh 'echo Production deployment triggered'
+            }
+        }
+
     }
 }
