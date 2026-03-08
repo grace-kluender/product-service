@@ -19,7 +19,6 @@ The Product Service is responsible for:
 
 ---
 
-
 ## Repository Structure
 
 This repository follows a standardized structure used across all microservices repositories:
