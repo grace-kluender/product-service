@@ -8,6 +8,7 @@ The Product Service is responsible for:
 - Persisting product data in PostgreSQL
 
 
+
 ---
 
 ## Tech Stack
