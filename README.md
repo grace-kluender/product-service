@@ -6,8 +6,7 @@ The Product Service is responsible for:
 - Providing product catalog data
 - Creating new products
 - Persisting product data in PostgreSQL
- 
- 
+
 ---
 
 ## Tech Stack
